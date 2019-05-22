@@ -22,7 +22,7 @@ if(!$consulta){
 			<?php include 'plantillas/nav.php'; ?>
 				<article>
 					<div class="mensaje">
-						<h2>PACIENTES</h2>
+						<h2>PACIENTILLOS</h2>
 					</div>
 					<a class="agregar" href="agregarpacientes.php">Agregar Paciente</a>
 					<table class="tabla">
