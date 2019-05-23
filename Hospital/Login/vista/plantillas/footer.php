@@ -1,3 +1,3 @@
 	<footer>
-				<p>Copyright © 2017 <a target="_blank": href="../index.php" title="Victor Cantillo">Victor Cantillo</a></p>
+				<p><a target="_blank": href="../index.php" title="Victor Cantillo">Medikal ©</a></p>
 	</footer>
