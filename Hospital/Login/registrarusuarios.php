@@ -2,14 +2,19 @@
 if(!isset($_SESSION['usuario'])){
 	header('Location: login.php');
 }
-
-
+$host = "localhost";
+//usuario de la bd
+$usuario="root";
+//clave de acceso de la base de datos
+$clave="";
+//bae de datos
+$db="centromedico";
+//conexion con MySQL
+$conn = mysqli_connect($host,$usuario,$clave,$db) or die("Error al abrir la base de datos");
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	$usuario = filter_var(strtolower($_POST['usuario']),FILTER_SANITIZE_STRING);
 	$password = $_POST['password'];
 	$password2 = $_POST['password2'];
-    $nombres = $_POST['nombres'];
-    $apellidos = $_POST['apellidos'];
     $roll = $_POST['roll'];
 	$errores ='';
 	if(empty($usuario) or empty($password)){
@@ -40,19 +45,23 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	}
 
 	if($errores==''){
-		$statement = $conexion->prepare(
-			'INSERT INTO usuarios VALUES
-            (null,:usuario,:pass, :nombres, :apellidos,:roll)');
+		/*$statement = $conexion->prepare(
+			'INSERT INTO usuario VALUES
+            (null,:usuario,:pass,:roll)');
 		$statement-> execute(array(
 			':usuario' => $usuario,
 			':pass'=> $password2,
-            ':nombres'=> $nombres,
-            ':apellidos'=> $apellidos,
             ':roll'=> $roll
-			));
-		header('Location: usuarios.php');
+			));*/
+		//header('Location: usuarios.php');
+        $sql = "INSERT INTO usuario (`usuario`, `pass`, `Roll`)VALUES('".$usuario."','".$password2."',".$roll.") ";
+		if (!mysqli_query($conn, $sql)) {
+			print "Error al insertar el producto";
+		}
 	}
+print $sql;
 }
+
 require 'vista/registro_vista.php';
 
 ?>

@@ -1,4 +1,13 @@
-<?php include 'plantillas/header.php'; ?>
+<?php include 'plantillas/header.php';
+
+
+$sqlll = "SELECT * FROM roll";
+	$rrr = mysqli_query($conn, $sqlll);
+	$ro = array();
+	while($rowww = mysqli_fetch_assoc($rrr)){
+		array_push($ro, $rowww);
+}
+?>
 	<section class="main">
 		<div class="wrapp">
 			<?php include 'plantillas/nav.php'; ?>
@@ -11,11 +20,15 @@
                             <input type="text" name="usuario"placeholder="Usuario" autofocus/>
                             <input type="text" name="password" placeholder="Contraseña" />
                             <input type="text" name="password2" placeholder="Repita su contraseña" />
-                            <input type="text" name="nombres" placeholder="Nombres" />
-                            <input type="text" name="apellidos" placeholder="Apellidos" />
                             <select name="roll">
-                                <option value="admin">Admin</option>
-                                <option value="Limitado">Limitado</option>
+                                <option value="0">-Tipo del producto-</option>
+							<?php
+								for ($i=0; $i < count($ro) ; $i++) {
+									print "<option value='".$ro[$i]["idroll"]."'";
+									print "/>".$ro[$i]["tproll"]."</option>";
+								}
+							?>
+
                             </select>
                             <input type="submit" value="Registrar" />
                             <?php  if(!empty($errores)): ?>

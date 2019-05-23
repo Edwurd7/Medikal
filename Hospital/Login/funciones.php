@@ -21,6 +21,11 @@
 		$resultado = $resultado->fetchAll();
 		return ($resultado) ? $resultado : false;
 	}
+function obtener_paciente_id($conexion,$id){
+		$resultado = $conexion->query("SELECT * FROM pacientes WHERE idPaciente = $id LIMIT 1");
+		$resultado = $resultado->fetchAll();
+		return ($resultado) ? $resultado : false;
+	}
     function obtenerUser_id($conexion,$id){
         $resultado = $conexion->query("SELECT * FROM usuarios WHERE id = $id LIMIT 1");
 		$resultado = $resultado->fetchall();
