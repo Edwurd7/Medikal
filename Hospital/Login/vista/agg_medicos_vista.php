@@ -13,6 +13,14 @@ $especialidad ->execute();
 $especialidad = $especialidad ->fetchAll();
 if(!$especialidad)
 	$mensaje .= 'NO hay especialidades, por favor registre!';
+
+//CARGAR roll EN EL SELECT
+$roll = $conexion -> prepare("SELECT * FROM roll");
+
+$roll ->execute();
+$roll= $roll ->fetchAll();
+if(!$roll)
+	$mensaje .= 'NO hay roles';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +49,11 @@ if(!$especialidad)
 						<select name="especialidad">
                         <?php foreach ($especialidad as $Sql): ?>
 						<?php echo "<option value='". $Sql['espNombre']. "'>". $Sql['espNombre']. "</option>"; ?>
+						<?php endforeach; ?>
+						</select>
+                        <select name="roll">
+                        <?php foreach ($roll as $Sql): ?>
+						<?php echo "<option value='". $Sql['idroll']. "'>". $Sql['tproll']. "</option>"; ?>
 						<?php endforeach; ?>
 						</select>
 						<input type="submit" name="enviar" value="Agregar Medico">

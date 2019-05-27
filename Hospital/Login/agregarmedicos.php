@@ -10,6 +10,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$identificacion =  $_POST['identificacion'];
 	$especialidad =  $_POST['especialidad'];
 	$telefono =  $_POST['telefono'];
+    $iduss='0';
+    $idrokk=$_POST['roll'];
 	$mensaje='';
 	if(empty($nombre) or empty($apellidos)  or empty($identificacion)){
 		$mensaje.= 'Por favor rellena todos los datos correctamente'."<br />";
@@ -30,12 +32,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		if($resultado != false){
 			$mensaje .='El nombre de usuario ya existe </br>';
 		}
-	}
+	}//'INSERT INTO medicos (idMedico,medidentificacion,mednombres,medapellidos,medEspecialidad,medtelefono,medcorreo,idusu,idroll)
 	if($mensaje==''){
 		$statement = $conexion->prepare(
 		'INSERT INTO medicos (idMedico,medidentificacion,mednombres,medapellidos,
-		medEspecialidad,medtelefono,medcorreo)
-		values(null, :id,:nombre,:apellidos,:especialidad,:telefono,:correo)');
+		medEspecialidad,medtelefono,medcorreo,idroll)
+		values(null, :id,:nombre,:apellidos,:especialidad,:telefono,:correo,:idroll)');
 
 		$statement ->execute(array(
 		':id'=>$identificacion,
@@ -43,9 +45,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		':apellidos'=>$apellidos,
 		':especialidad'=>$especialidad,
 		':telefono'=>$telefono,
-		':correo'=>$correo
+		':correo'=>$correo,
+        //'idusu'=>$iduss,
+        'idroll'=>$idrokk
 		));
 		header('Location: medicos.php');
+        //print "iden: ".$identificacion."nom: ".$nombre."ap: ".$apellidos."es: ".$especialidad."tel: ".$telefono."co:".$correo."ro: ".$idrokk;
+
 	}
 }
 require 'vista/agg_medicos_vista.php';

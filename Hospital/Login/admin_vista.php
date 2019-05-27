@@ -1,4 +1,10 @@
 <?php
+ session_start();
+if(isset($_SESSION['usuario'])){
+	//require 'vista/medicos_vista.php';
+}else{
+	header('Location: login.php');
+}
 $mensaje='';
 try{
 	$conexion = new PDO('mysql:host=localhost;dbname=centromedico','root','');
@@ -7,21 +13,21 @@ try{
 }
 
 $consulta = $conexion -> prepare("
-	SELECT * FROM medicos WHERE idroll=2 ORDER BY medidentificacion");
+	SELECT * FROM medicos WHERE idroll=1 ORDER BY medidentificacion");
 
 $consulta ->execute();
 $consulta = $consulta ->fetchAll();
 if(!$consulta){
-	$mensaje .= 'NO HAY MEDICOS PARA MOSTRAR';
+	$mensaje .= 'NO HAY  ADMINISTRADORES PARA MOSTRAR';
 }
 ?>
-<?php include 'plantillas/header.php'; ?>
+<?php include 'vista/plantillas/header.php'; ?>
 	<section class="main">
 		<div class="wrapp">
-			<?php include 'plantillas/nav.php'; ?>
+			<?php include 'vista/plantillas/nav.php'; ?>
 				<article>
 					<div class="mensaje">
-						<h2>MEDICOS</h2>
+						<h2>ADMINISTRADORES</h2>
 					</div>
 						<a href="agregarmedicos.php"class="agregar">Agregar Trabajador</a>
                         <a href="admin_vista.php"class="agregar">Ver Administradores</a>
@@ -57,6 +63,6 @@ if(!$consulta){
 						<?php  endif; ?>
 				</article>
 	</section>
-<?php include 'plantillas/footer.php'; ?>
+<?php include 'vista/plantillas/footer.php'; ?>
 </body>
 </html>

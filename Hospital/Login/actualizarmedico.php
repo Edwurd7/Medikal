@@ -20,6 +20,7 @@
 		$correo = limpiarDatos($_POST['correo']);
 		$telefono = limpiarDatos($_POST['telefono']);
 		$especialidad = limpiarDatos($_POST['especialidad']);
+        $idrokk=$_POST['roll'];
 
 		$statement = $conexion->prepare(
 		"UPDATE medicos
@@ -28,7 +29,8 @@
 		medapellidos =:apellidos,
 		medEspecialidad =:especialidad,
 		medtelefono =:telefono,
-		medcorreo =:correo
+		medcorreo =:correo,
+        idroll =:idroll
 		WHERE idMedico = :id");
 
 		$statement ->execute(array(
@@ -38,6 +40,7 @@
 		':especialidad'=>$especialidad,
 		':telefono'=>$telefono,
 		':correo'=>$correo,
+        'idroll'=>$idrokk,
         ':id'=> $id
         ));
         header('Location: medicos.php');

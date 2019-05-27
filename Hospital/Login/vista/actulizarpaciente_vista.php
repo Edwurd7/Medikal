@@ -15,7 +15,8 @@
                             placeholder="Apellidos:"   value="<?php echo $paciente['pacApellidos'];?>">
 						<input type="date" name="fechaNacimiento" placeholder="Fecha Nacimiento:" value="<?php echo $paciente['pacFechaNacimiento'];?>">
                         <select name="sexo">
-                            <option value="<?php echo $paciente['pacSexo'];?>"><?php echo $paciente['pacSexo'];?></option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
                         </select>
 						<input type="submit" name="enviar" value="Actualizar">
 

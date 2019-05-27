@@ -1,4 +1,18 @@
-<?php include 'plantillas/header.php'; ?>
+<?php include 'plantillas/header.php';
+include 'conn.php';
+$sql = "SELECT * FROM especialidades";
+$r = mysqli_query($conn, $sql);
+$productos = array();
+	while($row = mysqli_fetch_assoc($r)){
+		array_push($productos, $row);
+	}
+$sqll = "SELECT * FROM roll";
+$r = mysqli_query($conn, $sqll);
+$productoss = array();
+	while($row = mysqli_fetch_assoc($r)){
+		array_push($productoss, $row);
+	}
+?>
 	<section class="main">
 		<div class="wrapp">
 			<?php include 'plantillas/nav.php'; ?>
@@ -16,7 +30,20 @@
 						<input type="email" name="correo" placeholder="Correo:" value="<?php echo $medico['medcorreo'];?>">
 						<input type="numeric" name="telefono" placeholder="Telefono:" value="<?php echo $medico['medtelefono'];?>">
 						<select name="especialidad">
-							<option value="<?php echo $medico['medEspecialidad'];?>"><?php echo $medico['medEspecialidad'];?></option>
+							<?php
+								for ($i=0; $i < count($productos) ; $i++) {
+									print "<option value='".$productos[$i]["espNombre"]."'";
+									print "/>".$productos[$i]["espNombre"]."</option>";
+								}
+							?>
+						</select>
+                        <select name="roll">
+							<?php
+								for ($i=0; $i < count($productoss) ; $i++) {
+									print "<option value='".$productoss[$i]["idroll"]."'";
+									print "/>".$productoss[$i]["tproll"]."</option>";
+								}
+							?>
 						</select>
 						<input type="submit" name="enviar" value="Actualizar">
 
