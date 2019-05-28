@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		echo "Error: ". $e->getMessage();
 	}
 	$statement = $conexion -> prepare(
-			'SELECT * FROM usuarios INNER JOIN medicos on medicos.idMedico=usuarios.idmed WHERE usuario = :usuario AND pass= :password and idroll=1');
+			'SELECT * FROM usuarios WHERE usuario = :usuario AND pass= :password');
 
 	$statement ->execute(array(':usuario'=> $usuario,':password'=> $password));
 
@@ -23,19 +23,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	if($resultado !==false){
 		$_SESSION['usuario'] = $usuario;
 		header('Location: index.php');
-
-	}
-
-    $statement = $conexion -> prepare(
-			'SELECT * FROM usuarios INNER JOIN medicos on medicos.idMedico=usuarios.idmed WHERE usuario = :usuario AND pass= :password and idroll>=2');
-
-	$statement ->execute(array(':usuario'=> $usuario,':password'=> $password));
-
-	$resultado = $statement->fetch();
-	if($resultado !==false){
-		$_SESSION['usuario'] = $usuario;
-		header('Location: log/index.php');
-
 	}else{
 		$errores .= 'Datos incorrectos y/o invalidos!';
 	}
