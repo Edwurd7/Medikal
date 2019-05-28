@@ -4,15 +4,13 @@
 			<?php include 'plantillas/nav.php'; ?>
 				<article>
 					<div class="mensaje">
-						<h2>USUARIOS</h2>
+						<h2>ESPECIALIDADES</h2>
 					</div>
 					<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-                        <h2>EDITAR USUARIOS</h2><br/>
-                        <input type="hidden" name="id" value="<?php echo $user['id'];?>">
-                        <input type="text" name="usuario" placeholder="Usuario" value="<?php echo $user['usuario'];?>" autofocus/>
-                        <input type="text" name="password" placeholder="Contraseña"/>
-                        <input type="text" name="password2" placeholder="Repita la contraseña"/>
-                        <input type="submit" value="Registrar" />
+                        <h2>EDITAR ESPECIALIDAD</h2><br/>
+                        <input type="hidden" name="id" value="<?php echo $especialidad['idespecialidad'];?>">
+                        <input type="text" name="nombre" placeholder="Especialdades:" value="<?php echo $especialidad['espNombre'];?>" autofocus/>
+                        <input type="submit" value="Editar Especialidad" />
                         <?php  if(!empty($errores)): ?>
                           <ul>
                               <?php echo $errores; ?>
@@ -24,5 +22,4 @@
 	</section>
 <?php include 'plantillas/footer.php'; ?>
 </body>
-</html>
 </html>
