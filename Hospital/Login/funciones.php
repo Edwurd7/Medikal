@@ -47,5 +47,11 @@ function obtener_paciente_id($conexion,$id){
 		$resultado = $resultado->fetchall();
 		return ($resultado) ? $resultado : false;
     }
+function obtener_us_id($conexion,$id_us){
+        $resultado = $conexion->query("SELECT * FROM usuarios WHERE id = $id_us LIMIT 1");
+		$resultado = $resultado->fetchall();
+		return ($resultado) ? $resultado : false;
+    }
+
 
 ?>
